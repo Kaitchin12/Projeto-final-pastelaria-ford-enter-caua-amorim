@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Insumos - Pastelaria</title>
+    <link rel="stylesheet" href="historico.component.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+  <div class="logo">
+    <span class="logo-icon">🧑‍🍳</span>
+    <span class="logo-text">Pastelaria</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/home" class="active">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="title-section">
+    <h1>HISTÓRICO DE INSUMOS</h1>
+    <p>Gerencie seus ingredientes com facilidade.</p>
+  </section>
+
+<div class="container">
+
+  <!-- Formulário de cadastro -->
+  <aside class="form-container">
+    <h2>Cadastrar Novo Insumo</h2>
+    <form (ngSubmit)="salvar(novoInsumo)" #cadForm="ngForm">
+      <div class="form-group">
+        <label for="nome-insumo">Nome do Insumo</label>
+        <input type="text" id="nome-insumo" name="nome" [(ngModel)]="novoInsumo.nome" placeholder="Ex: Farinha de Trigo" required>
+      </div>
+      <div class="form-group">
+        <label for="quantidade">Quantidade (KG)</label>
+        <input type="number" id="quantidade" name="quantidade" [(ngModel)]="novoInsumo.quantidade" step="0.01" placeholder="0" required>
+      </div>
+      <div class="form-group">
+        <label for="valor-por-kg">Valor por KG</label>
+        <input type="number" id="valor-por-kg" name="preco_kg" [(ngModel)]="novoInsumo.preco_kg" step="0.01" placeholder="5.50">
+      </div>
+
+      <button type="submit" class="btn-add-new" [disabled]="cadForm.invalid">
+        <span class="plus-icon">+</span>
+        <span>Adicionar Novo</span>
+      </button>
+    </form>
+  </aside>
+
+  <!-- Tabela de insumos -->
+  <section class="stock-container">
+    <h2>Estoque Atual</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Insumo</th>
+            <th>Quantidade</th>
+            <th>preço_per_kg</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let insumo of insumos">
+            <td>{{ insumo.nome }}</td>
+            <td>{{ insumo.quantidade }}</td>
+            <td>{{insumo.preco_kg}}</td>
+            <td>
+              <button (click)="editarInsumo(insumo)">Editar</button>
+              <button (click)="deletarInsumo(insumo.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+
+<div class="form-container" *ngIf="insumoEdit">
+  <h2>Editar Insumo</h2>
+
+  <form (ngSubmit)="salvarEdicao()">
+    
+    <div class="form-group">
+      <label>Nome do Insumo</label>
+      <input type="text" [(ngModel)]="insumoEdit.nome" name="editNome" required>
+    </div>
+
+    <div class="form-group">
+      <label>Quantidade (KG)</label>
+      <input type="number" [(ngModel)]="insumoEdit.quantidade" name="editQuantidade" step="0.01" required>
+    </div>
+
+    <div class="form-group">
+      <label>Preço por KG</label>
+      <input type="number" [(ngModel)]="insumoEdit.preco_kg" name="editPrecoKG" step="0.01">
+    </div>
+
+    <button type="submit" class="btn-add-new">Salvar Edição</button>
+    <button type="button" (click)="cancelarEdicao()" style="margin-left: 10px;">Cancelar</button>
+
+  </form>
+</div>
+</main>
+
+</body>
+</html>

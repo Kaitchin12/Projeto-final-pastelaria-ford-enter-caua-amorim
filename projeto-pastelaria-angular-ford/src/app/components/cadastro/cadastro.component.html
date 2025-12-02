@@ -1,0 +1,55 @@
+<div class="form-container">
+
+  <div class="form-header">
+    <span class="logo">🥟</span>
+    <h1>Cadastro</h1>
+  </div>
+
+  <!-- Angular controla o envio -->
+  <form (ngSubmit)="cadastrar()">
+
+    <div class="form-grid">
+
+      <div class="input-group">
+        <label>Nome</label>
+        <input
+          type="text"
+          class="input"
+          [(ngModel)]="usuario.nome"
+          name="nome"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input
+          type="email"
+          class="input"
+          [(ngModel)]="usuario.email"
+          name="email"
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+        <input
+          type="password"
+          class="input"
+          [(ngModel)]="usuario.senha"
+          name="senha"
+          required
+        >
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn-submit">
+      Cadastrar
+    </button>
+
+    <p>já sou cadastrado? <a href="/login">login</a></p>
+
+  </form>
+</div>

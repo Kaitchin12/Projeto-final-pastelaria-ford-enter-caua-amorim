@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lucro</title>
+    <link rel="stylesheet" href="lucro.component.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/home">home</a>
+            <a href="/historico">historico</a>
+            <a href="/login">logout</a>
+        </nav>
+    </header>
+ <main class="main-lucro">
+  <section class="lucro-container">
+    <h1 class="lucro-titulo">Lucro Total Acumulado</h1>
+    <p class="valor-lucro">R$ {{ lucroTotal | number:'1.2-2' }}</p>
+    
+    <div style="margin-top: 20px;">
+        <a href="/home" style="color: blue; text-decoration: underline;">Voltar para Home</a>
+    </div>
+  </section>
+</main>
+</body>
+</html>

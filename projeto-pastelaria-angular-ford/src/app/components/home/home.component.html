@@ -1,0 +1,101 @@
+<header>
+  <nav class="menu-cabecalho">
+    <a href="#">
+      <img class="logo-home" src="imagem/Captura de tela 2025-11-12 104303.png" alt="logo-empresa-pasteis">
+    </a>
+
+    <a href="#">
+      <img class="imagem-usuario"
+           src="https://static.vecteezy.com/system/resources/previews/005/005/788/non_2x/user-icon-in-trendy-flat-style-isolated-on-grey-background-user-symbol-for-your-web-site-design-logo-app-ui-illustration-eps10-free-vector.jpg">
+    </a>
+  </nav>
+</header>
+
+<main>
+
+  <div class="classe-pai">
+
+    <div class="container-menu-opcoes">
+      <a href="/lucro">
+        <img class="imagem-bebida" src="https://cdn-icons-png.flaticon.com/512/126/126157.png">
+      </a>
+      <p class="paragrafo-menu">lucro</p>
+    </div>
+
+    <div class="container-menu-opcoes">
+      <a href="/historico">
+        <img class="imagem-historico" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/history-icon.png">
+      </a>
+      <p class="paragrafo-historico">estoque</p>
+    </div>
+
+    <div class="container-menu-opcoes" (click)="abrirModal()">
+      <img class="imagem-historico" src="https://cdn-icons-png.flaticon.com/512/25/25304.png">
+      <p class="paragrafo-historico">novo pedido</p>
+    </div>
+
+  </div>
+
+ 
+  <div class="modal-overlay" *ngIf="modalAberto" (click)="fecharModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+
+      <h2>Novo Pedido</h2>
+
+      <label >nome pastel</label>
+      <input type="text" placeholder="digite">
+
+      <div class="form-group">
+        <label>Quantidade de Pastéis:</label>
+        <input type="number" 
+               [(ngModel)]="quantidadePasteis" 
+               min="1" 
+               class="input-destaque">
+      </div>
+
+      <div class="form-group">
+        <label>Preço de Venda (Unidade R$):</label>
+        <input type="number" 
+               [(ngModel)]="precoVendaPorPastel" 
+               placeholder="Ex: 15.00" 
+               class="input-destaque">
+      </div>
+      
+      <hr>
+
+      <!-- INSUMOS -->
+      <div class="lista-insumos" *ngFor="let item of insumos">
+       
+        <label class="item-insumo">
+          <input type="checkbox" [(ngModel)]="item.selecionado">
+          {{ item.insumo.nome }}
+        </label>
+
+        <div *ngIf="item.selecionado" class="insumo-detalhe">
+          <input type="number"
+                 min="0"
+                 placeholder="Gramas por pastel"
+                 [(ngModel)]="item.gramasPorPastel">
+
+          <small>
+            Total: {{ calcularTotalGramas(item) }} g
+          </small>
+        </div>
+
+      </div>
+
+      <!-- BOTÕES -->
+      <div class="acoes-modal">
+        <button class="btn-confirmar" (click)="confirmarPedido()">
+          Confirmar Pedido
+        </button>
+
+        <button class="btn-cancelar" (click)="fecharModal()">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</main>

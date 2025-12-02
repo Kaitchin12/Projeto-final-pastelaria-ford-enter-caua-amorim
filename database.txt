@@ -1,0 +1,50 @@
+create database usuario;
+use usuario;
+drop table usuarioCadastro;
+
+create table usuarioCadastro(
+id int auto_increment primary key,
+nome varchar(100),
+email varchar(100),
+senha varchar(100)
+);
+
+
+create table insumosCadastro(
+id int auto_increment primary key,
+nome VARCHAR(100) NOT NULL UNIQUE,
+quantidade DECIMAL(10,3) NOT NULL DEFAULT 0,
+preco_kg float not null 
+);
+
+create table pasteis(
+pastel_id int auto_increment primary key,
+nome varchar (100),
+preco_venda float
+);
+
+
+create table usoInsumo(
+id int auto_increment  primary key ,
+pastel_id int,
+insumo_id int,
+quantidade_usada int, 
+FOREIGN KEY (pastel_id) REFERENCES pasteis(pastel_id),
+FOREIGN KEY (insumo_id) REFERENCES insumosCadastro(id)
+);
+
+create table vendas (
+id int auto_increment primary key,	
+pastel_id int ,
+quantidade int ,
+valor_total float,
+custo_total float,
+lucro float,
+data_venda datetime,
+FOREIGN KEY (pastel_id) REFERENCES pasteis(pastel_id)
+);
+
+
+
+select * from usuarioCadastro;
+select * from insumosCadastro;

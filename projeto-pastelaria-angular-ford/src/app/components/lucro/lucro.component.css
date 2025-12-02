@@ -1,0 +1,80 @@
+/* ---------------------------------- */
+/* CSS PARA O CABEÇALHO (HEADER/NAV) */
+/* ---------------------------------- */
+header {
+    width: 100%;
+    background-color: #ccc; /* Cor escura para o topo */
+    padding: 15px 0;
+    position: fixed; /* Fixa o cabeçalho no topo */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end; /* Alinha os links à direita */
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza a navegação dentro do header */
+    padding-right: 20px;
+}
+
+nav a {
+    color: #ecf0f1; /* Cor clara para os links */
+    text-decoration: none; /* Remove sublinhado */
+    margin-left: 25px;
+    font-size: 1em;
+    color: black;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #34495e; /* Fundo escuro ao passar o mouse */
+    border-radius: 4px;
+}
+
+
+body {
+    margin: 0;
+    padding-top: 70px; /* Adiciona espaço no topo para o header fixo */
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; 
+    display: flex;
+    flex-direction: column; /* Organiza body em coluna (header em cima, main abaixo) */
+    align-items: center; /* Centraliza horizontalmente o conteúdo */
+    min-height: 100vh;
+}
+
+main {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 90%;
+    max-width: 400px; 
+    text-align: center;
+    margin-top: 20px; /* Espaço extra abaixo do header */
+}
+
+
+.lucro-titulo {
+    color: #2c3e50; 
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #2ecc71; 
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.valor-lucro {
+    font-size: 3em;
+    font-weight: bold;
+    color: #2ecc71; 
+    padding: 20px 0;
+    margin: 10px 0;
+    background-color: #e9f8ed; 
+    border-radius: 8px;
+}

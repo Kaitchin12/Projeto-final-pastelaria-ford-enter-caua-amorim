@@ -1,0 +1,129 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: ivory; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container do formulário */
+.form-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #FFFBEB;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header .logo {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.form-header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    color: #333;
+    margin: 0;
+}
+
+/* Grid dos campos */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+/* Grupo de inputs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs */
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Campo largura total */
+.input-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Botão */
+.btn-submit {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #45a049;
+}
+
+/* Link */
+.login-link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #777;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-header h1 {
+        font-size: 2rem;
+    }
+}
