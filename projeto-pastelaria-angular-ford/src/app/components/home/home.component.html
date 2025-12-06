@@ -1,102 +1,142 @@
-<!--MELHORAR A HOME-->
-<header>
-  <nav class="menu-cabecalho">
-    <a href="#">
-      <img class="logo-home" src="imagem/Captura de tela 2025-11-12 104303.png" alt="logo-empresa-pasteis">
-    </a>
+<header class="app-header">
+  <nav class="nav-content">
+    <div class="logo-container">
+      <img class="logo-img" src="imagem/Captura de tela 2025-11-12 104303.png" alt="Logo Pasteleiro Pro">
+    </div>
 
-    <a href="#">
-      <img class="imagem-usuario"
-           src="https://static.vecteezy.com/system/resources/previews/005/005/788/non_2x/user-icon-in-trendy-flat-style-isolated-on-grey-background-user-symbol-for-your-web-site-design-logo-app-ui-illustration-eps10-free-vector.jpg">
-    </a>
+    <div class="user-actions">
+      <div class="user-profile">
+        <img src="https://static.vecteezy.com/system/resources/previews/005/005/788/non_2x/user-icon-in-trendy-flat-style-isolated-on-grey-background-user-symbol-for-your-web-site-design-logo-app-ui-illustration-eps10-free-vector.jpg" alt="Perfil">
+        <span class="user-name">Admin</span>
+      </div>
+      <a href="/login">
+      <button class="btn-logout" title="Sair do sistema">
+        <i class="fa-solid fa-right-from-bracket"></i> Sair
+      </button>
+      </a>
+    </div>
   </nav>
 </header>
 
-<main>
+<main class="main-content">
 
-  <div class="classe-pai">
-
-    <div class="container-menu-opcoes">
-      <a href="/lucro">
-        <img class="imagem-bebida" src="https://cdn-icons-png.flaticon.com/512/126/126157.png">
-      </a>
-      <p class="paragrafo-menu">lucro</p>
-    </div>
-
-    <div class="container-menu-opcoes">
-      <a href="/historico">
-        <img class="imagem-historico" src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/history-icon.png">
-      </a>
-      <p class="paragrafo-historico">estoque</p>
-    </div>
-
-    <div class="container-menu-opcoes" (click)="abrirModal()">
-      <img class="imagem-historico" src="https://cdn-icons-png.flaticon.com/512/25/25304.png">
-      <p class="paragrafo-historico">novo pedido</p>
-    </div>
-
-  </div>
-
- 
-  <div class="modal-overlay" *ngIf="modalAberto" (click)="fecharModal()">
-    <div class="modal" (click)="$event.stopPropagation()">
-
-      <h2>Novo Pedido</h2>
-
-      <label >nome pastel</label>
-      <input type="text" placeholder="digite">
-
-      <div class="form-group">
-        <label>Quantidade de Pastéis:</label>
-        <input type="number" 
-               [(ngModel)]="quantidadePasteis" 
-               min="1" 
-               class="input-destaque">
-      </div>
-
-      <div class="form-group">
-        <label>Preço de Venda (Unidade R$):</label>
-        <input type="number" 
-               [(ngModel)]="precoVendaPorPastel" 
-               placeholder="Ex: 15.00" 
-               class="input-destaque">
-      </div>
+  <section class="hero-carousel">
+    <div class="carousel-container">
+      @for (slide of slides; track $index) {
+        <div class="carousel-slide" [class.active]="$index === currentSlide">
+          <img [src]="slide.image" [alt]="slide.title">
+          <div class="carousel-caption">
+            <h3>{{ slide.title }}</h3>
+            <p>{{ slide.subtitle }}</p>
+          </div>
+        </div>
+      }
       
-      <hr>
+      <button class="carousel-control prev" (click)="prevSlide()">&#10094;</button>
+      <button class="carousel-control next" (click)="nextSlide()">&#10095;</button>
+      
+      <div class="carousel-indicators">
+        @for (slide of slides; track $index) {
+          <span class="dot" [class.active]="$index === currentSlide" (click)="irParaSlide($index)"></span>
+        }
+      </div>
+    </div>
+  </section>
 
-      <!-- INSUMOS -->
-      <div class="lista-insumos" *ngFor="let item of insumos">
-       
-        <label class="item-insumo">
-          <input type="checkbox" [(ngModel)]="item.selecionado">
-          {{ item.insumo.nome }}
-        </label>
+  <section class="dashboard-grid">
+    
+    <a href="/lucro" class="card-action">
+      <div class="card-icon profit">
+        <img src="https://cdn-icons-png.flaticon.com/512/126/126157.png" alt="Lucro">
+      </div>
+      <div class="card-info">
+        <h3>Lucro</h3>
+        <p>Visualizar rendimentos</p>
+      </div>
+    </a>
 
-        <div *ngIf="item.selecionado" class="insumo-detalhe">
-          <input type="number"
-                 min="0"
-                 placeholder="Gramas por pastel"
-                 [(ngModel)]="item.gramasPorPastel">
+    <a href="/historico" class="card-action">
+      <div class="card-icon stock">
+        <img src="https://cdn-icons-png.flaticon.com/512/2666/2666505.png" alt="Estoque"> 
+        </div>
+      <div class="card-info">
+        <h3>Estoque</h3>
+        <p>Gerenciar insumos</p>
+      </div>
+    </a>
 
-          <small>
-            Total: {{ calcularTotalGramas(item) }} g
-          </small>
+    <div class="card-action highlight" (click)="abrirModal()">
+      <div class="card-icon new-order">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25304.png" alt="Novo Pedido">
+      </div>
+      <div class="card-info">
+        <h3>Novo Pedido</h3>
+        <p>Iniciar venda</p>
+      </div>
+    </div>
+
+  </section>
+
+  @if (modalAberto) {
+    <div class="modal-backdrop" (click)="fecharModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        
+        <div class="modal-header">
+          <h2>📝 Novo Pedido</h2>
+          <button class="close-btn" (click)="fecharModal()">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label>Nome do Pastel</label>
+              <input type="text" placeholder="Ex: Carne com Queijo" class="input-modern">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Quantidade</label>
+              <input type="number" [(ngModel)]="quantidadePasteis" min="1" class="input-modern">
+            </div>
+            <div class="form-group">
+              <label>Preço Venda (R$)</label>
+              <input type="number" [(ngModel)]="precoVendaPorPastel" placeholder="0.00" class="input-modern">
+            </div>
+          </div>
+
+          <div class="divider">
+            <span>Insumos utilizados</span>
+          </div>
+
+          <div class="insumos-list">
+            @for (item of insumos; track item.insumo.id) {
+              <div class="insumo-item" [class.selected]="item.selecionado">
+                <label class="checkbox-wrapper">
+                  <input type="checkbox" [(ngModel)]="item.selecionado">
+                  <span class="checkmark"></span>
+                  <span class="label-text">{{ item.insumo.nome }}</span>
+                </label>
+
+                @if (item.selecionado) {
+                  <div class="insumo-input-group">
+                    <input type="number" min="0" placeholder="Qtd (g)" [(ngModel)]="item.gramasPorPastel" class="input-small">
+                    <span class="unit">g/un</span>
+                    <small class="total-calc">Total: <strong>{{ calcularTotalGramas(item) }}g</strong></small>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-cancel" (click)="fecharModal()">Cancelar</button>
+          <button class="btn-confirm" (click)="confirmarPedido()">Confirmar Venda</button>
         </div>
 
       </div>
-
-      <!-- BOTÕES -->
-      <div class="acoes-modal">
-        <button class="btn-confirmar" (click)="confirmarPedido()">
-          Confirmar Pedido
-        </button>
-
-        <button class="btn-cancelar" (click)="fecharModal()">
-          Fechar
-        </button>
-      </div>
-
     </div>
-  </div>
+  }
 
 </main>
