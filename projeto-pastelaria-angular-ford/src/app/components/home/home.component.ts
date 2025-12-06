@@ -43,17 +43,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   // Imagens do carrossel (Você pode alterar as URLs depois)
   slides: Slide[] = [
     {
-      image: 'https://images.unsplash.com/photo-1626804475297-411dbe9175d6?q=80&w=1200',
+      image: 'https://s2.glbimg.com/md4D16uQ0vBVD8u8agv0GwGB8oE=/940x523/e.glbimg.com/og/ed/f/original/2017/10/09/pastel.jpg',
       title: 'Pastéis Crocantes',
       subtitle: 'O melhor sabor da cidade'
     },
     {
-      image: 'https://images.unsplash.com/photo-1606335543042-57c525922933?q=80&w=1200', 
+      image: 'https://media.gettyimages.com/id/1408461792/pt/foto/fresh-sweet-pastry-on-a-display-in-bakery.jpg?s=612x612&w=gi&k=20&c=cFivq-3_85u-2KMf1HVuqBvXJmHDDQKSDqxX13wfI14=', 
       title: 'Promoção do Dia',
       subtitle: 'Qualidade que você sente'
     },
     {
-      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200',
+      image: 'https://conceito.de/wp-content/uploads/2015/01/food-3181717_1280.jpg',
       title: 'Ingredientes Frescos',
       subtitle: 'Feito com carinho para você'
     }
