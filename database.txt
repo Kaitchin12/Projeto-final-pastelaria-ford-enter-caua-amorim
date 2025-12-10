@@ -46,5 +46,12 @@ FOREIGN KEY (pastel_id) REFERENCES pasteis(pastel_id)
 
 
 
-select * from usuarioCadastro;
+
+
+
+
+INSERT INTO pasteis (pastel_id, nome, preco_venda) 
+VALUES (1, 'Pastel Personalizado', 0);	
 select * from insumosCadastro;
+select * from usuarioCadastro;
+select * from vendas;
