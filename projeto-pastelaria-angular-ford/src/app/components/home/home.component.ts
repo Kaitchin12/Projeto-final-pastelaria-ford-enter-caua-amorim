@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentSlide = 0;
   slideInterval: any;
   
-  // Imagens do carrossel (Você pode alterar as URLs depois)
+ 
   slides: Slide[] = [
     {
       image: 'https://s2.glbimg.com/md4D16uQ0vBVD8u8agv0GwGB8oE=/940x523/e.glbimg.com/og/ed/f/original/2017/10/09/pastel.jpg',
@@ -81,14 +81,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.iniciarAutoPlay();
   }
 
-  // Importante: Limpa o timer quando sai da página para não travar o navegador
+
   ngOnDestroy(): void {
     if (this.slideInterval) {
       clearInterval(this.slideInterval);
     }
   }
 
-  // --- Métodos do Carrossel ---
+
 
   iniciarAutoPlay() {
     this.slideInterval = setInterval(() => {
@@ -116,12 +116,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.iniciarAutoPlay();
   }
 
-  // --- Métodos do Pedido/Modal ---
+
 
   abrirModal() { 
     this.modalAberto = true;
     
-    // Zera os valores sempre que abrir o modal para um novo pedido
+
     this.quantidadePasteis = 1;
     this.precoVendaPorPastel = 0; 
   }
@@ -147,13 +147,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // 3. Prepara o pacote para a API (ID e quantidade total usada)
+
     const itensParaAPI = selecionados.map(item => ({
       id: item.insumo.id,
       quantidade_usada: item.gramasPorPastel * this.quantidadePasteis 
     }));
 
-    // 4. Calcula o total que entrou no caixa
+
     const valorTotalVenda = this.precoVendaPorPastel * this.quantidadePasteis;
 
     // 5. Envia para o Back-end
