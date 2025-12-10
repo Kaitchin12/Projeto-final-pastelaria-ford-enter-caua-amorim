@@ -49,8 +49,7 @@ export class HistoricoComponent implements OnInit {
     }
   }
 
-  //corrigir essa parte PORQUE NAO EDITA
-  // Seleciona insumo para edição (opcional, caso queira adicionar depois)
+
   insumoEdit?: insumos;
 
   editarInsumo(insumo: insumos) {
