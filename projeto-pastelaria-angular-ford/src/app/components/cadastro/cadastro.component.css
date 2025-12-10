@@ -1,129 +1,206 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: ivory; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+/* Reset Básico */
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Container do formulário */
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Removemos o background do body pois o container vai cobrir tudo */
+    overflow-x: hidden; 
+}
+
+/* O Container agora é a tela inteira */
 .form-container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #FFFBEB; /* Cor de fundo do formulário */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    padding: 2rem;           /* Margem de segurança para telas menores */
+    
+    /* Animação de entrada suave */
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Wrapper para limitar a largura do conteúdo (para não esticar infinitamente em monitores 4k) */
+.content-wrapper {
     width: 100%;
-    max-width: 800px;
-    background-color: #FFFBEB;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; /* Bem largo, como pedido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Cabeçalho */
 .form-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem; /* Bastante espaço */
 }
 
 .form-header .logo {
-    font-size: 3rem;
-    line-height: 1;
+    font-size: 5rem; /* Logo gigante */
+    display: block;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .form-header h1 {
     font-family: 'Caveat', cursive;
-    font-size: 2.5rem;
+    font-size: 4rem; /* Título bem grande */
     color: #333;
-    margin: 0;
 }
 
-/* Grid dos campos */
+/* Grid */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+    gap: 2.5rem; /* Espaço grande entre os inputs */
+    margin-bottom: 2.5rem;
 }
 
-/* Grupo de inputs */
 .input-group {
     display: flex;
     flex-direction: column;
 }
 
-.input-group label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #555;
-    margin-bottom: 0.5rem;
+.input-group.full-width {
+    grid-column: 1 / -1;
 }
 
-/* Inputs */
+.input-group label {
+    font-size: 1.2rem; /* Label maior */
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 0.8rem;
+    margin-left: 5px;
+}
+
 .input-group input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
+    padding: 1.5rem; /* Input alto e confortável */
+    border: 2px solid #E0E0E0; /* Borda um pouco mais grossa */
+    border-radius: 12px;
     background-color: #fff;
-    font-size: 1rem;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem; /* Texto digitado maior */
+    transition: all 0.3s ease;
 }
 
 .input-group input:focus {
     outline: none;
     border-color: #4CAF50;
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.1);
+    transform: translateY(-2px);
 }
 
-/* Campo largura total */
-.input-group.full-width {
-    grid-column: 1 / -1;
+.input-group input::placeholder {
+    color: #ccc;
+}
+
+/* Checkboxes Centralizados */
+.checkbox-container {
+    display: flex;
+    justify-content: center; /* Centraliza os checkboxes */
+    gap: 3rem; /* Espaço entre as duas opções */
+    margin-bottom: 3rem;
+    flex-wrap: wrap; /* Permite quebrar linha se a tela for pequena */
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1rem;
+    color: #555;
+    cursor: pointer;
+    background: rgba(255,255,255,0.5);
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background 0.3s;
+}
+
+.checkbox-item:hover {
+    background: rgba(255,255,255,1);
+}
+
+.checkbox-input {
+    width: 24px; /* Checkbox maior */
+    height: 24px;
+    accent-color: #4CAF50;
+    cursor: pointer;
 }
 
 /* Botão */
 .btn-submit {
     width: 100%;
-    padding: 1rem;
-    margin-top: 2rem;
+    max-width: 500px; /* Limita largura do botão para ficar elegante */
+    margin: 0 auto;   /* Centraliza o botão */
+    display: block;
+    padding: 1.5rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 50px; /* Botão arredondado moderno */
     background-color: #4CAF50;
     color: white;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: #45a049;
+    background-color: #43a047;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
 }
 
 /* Link */
 .login-link {
-    display: block;
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     color: #777;
+    font-size: 1.1rem;
+}
+
+.login-link a {
+    color: #4CAF50;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.login-link:hover {
-    text-decoration: underline;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
+/* --- Responsividade --- */
+@media (max-width: 768px) {
     .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-container {
-        padding: 1.5rem;
+        grid-template-columns: 1fr; /* Coluna única em tablet/mobile */
+        gap: 1.5rem;
     }
 
     .form-header h1 {
-        font-size: 2rem;
+        font-size: 2.8rem;
+    }
+
+    .checkbox-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .content-wrapper {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 }

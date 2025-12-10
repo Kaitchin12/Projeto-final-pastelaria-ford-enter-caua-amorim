@@ -3,61 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina de login</title>
+    <title>Página de Login</title>
     <link rel="stylesheet" href="login.component.css">
 </head>
 <body>
     
-   <main>
-  <section class="apresentacao-conteudo">
-    <img class="imagem-salgado-login" src="../imagem/salgados.png" alt="imagem-salgado">
+   <main class="main-container">
+      <section class="apresentacao-conteudo">
+        <div class="imagem-wrapper">
+            <img class="imagem-salgado-login" src="../imagem/salgados.png" alt="imagem-salgado">
+        </div>
 
-    <form action="/login" method="post" class="formulario-login" (ngSubmit)="entrar()">
+        <form action="/login" method="post" class="formulario-login" (ngSubmit)="entrar()">
+          
+          <img class="logo-pastelaria" src="../imagem/logo.png" alt="logo da pastelaria">
+          
+          <div class="inputs-container">
+              <input
+                class="input-parte-login"
+                type="email"
+                name="email"
+                [(ngModel)]="usuario.email"
+                placeholder="Email"
+                required
+              >
 
-      <img class="logo-pastelaria" src="../imagem/logo.png" alt="logo da pastelaria">
-      <input
-        class="input-parte-login"
-        type="email"
-        name="email"
-        [(ngModel)]="usuario.email"
-        placeholder="Email"
-        required
-      >
+              <input
+                class="input-parte-login"
+                type="password"
+                name="senha"
+                [(ngModel)]="usuario.senha"
+                placeholder="Senha"
+                required
+              >
+          </div>
 
-      <input
-        class="input-parte-login"
-        type="password"
-        name="senha"
-        [(ngModel)]="usuario.senha"
-        placeholder="Senha"
-        required
-      >
+          <button class="botao" type="submit">ENTRAR</button>
 
-      <div class="container-checkbox">
-        <label class="checkbox-item">
-          <input type="checkbox" class="checkbox-input" required>
-          <span>Você concorda com os termos?</span>
-        </label>
+          <p class="texto-cadastro">
+             Não tem cadastro? <a href="/cadastro">Cadastre-se</a>
+          </p>
+        </form>
 
-        <label class="checkbox-item">
-          <input type="checkbox" class="checkbox-input" required>
-          <span>Aceita receber notificações?</span>
-        </label>
-      </div>
-
-     <button class="botao" type="submit">Enviar</button>
-
-
-      <p>Não tem cadastro?
-        <a href="/cadastro">Cadastre-se</a>
-      </p>
-    </form>
-
-  </section>
-</main>
-
-   
-
+      </section>
+   </main>
 
 </body>
 </html>

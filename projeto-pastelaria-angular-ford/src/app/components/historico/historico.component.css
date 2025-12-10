@@ -4,6 +4,10 @@
     margin: 0;
     padding: 0;
 }
+.imagem-logo{
+    width: 9rem;
+    height: auto;
+}
 
 body {
     font-family: 'Nunito', sans-serif;

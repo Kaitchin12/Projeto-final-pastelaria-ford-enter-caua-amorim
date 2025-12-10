@@ -1,55 +1,42 @@
 <div class="form-container">
 
-  <div class="form-header">
-    <span class="logo">🥟</span>
-    <h1>Cadastro</h1>
-  </div>
 
-  <!-- Angular controla o envio -->
   <form (ngSubmit)="cadastrar()">
-
     <div class="form-grid">
-
+      
       <div class="input-group">
         <label>Nome</label>
-        <input
-          type="text"
-          class="input"
-          [(ngModel)]="usuario.nome"
-          name="nome"
-          required
-        >
+        <input type="text" [(ngModel)]="usuario.nome" name="nome" required>
       </div>
 
       <div class="input-group">
         <label>Email</label>
-        <input
-          type="email"
-          class="input"
-          [(ngModel)]="usuario.email"
-          name="email"
-          required
-        >
+        <input type="email" [(ngModel)]="usuario.email" name="email" required>
       </div>
 
-      <div class="input-group">
+      <div class="input-group full-width">
         <label>Senha</label>
-        <input
-          type="password"
-          class="input"
-          [(ngModel)]="usuario.senha"
-          name="senha"
-          required
-        >
+        <input type="password" [(ngModel)]="usuario.senha" name="senha" required>
       </div>
 
+    </div>
+
+    <div class="checkbox-container">
+      <label class="checkbox-item">
+        <input type="checkbox" class="checkbox-input" required>
+        <span>Você concorda com os termos?</span>
+      </label>
+
+      <label class="checkbox-item">
+        <input type="checkbox" class="checkbox-input" required>
+        <span>Aceita receber notificações?</span>
+      </label>
     </div>
 
     <button type="submit" class="btn-submit">
       Cadastrar
     </button>
 
-    <p>já sou cadastrado? <a href="/login">login</a></p>
-
+    <p class="login-link">Já sou cadastrado? <a href="/login">Fazer Login</a></p>
   </form>
 </div>
